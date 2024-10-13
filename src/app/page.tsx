@@ -8,7 +8,8 @@ const prompt = "top 10 online courses for react js for free.";
 export default function Home() {
     const [summary, setSummary] = useState("");
 
-    const generateResult = async () => {
+    const generateResult = async (e:any) => {
+        e.preventDefault();
         const result = await AIchatSession.sendMessage(prompt);
         setSummary(result.response.text());
     };
@@ -16,8 +17,8 @@ export default function Home() {
     return (
         <div>
             <form>
-                <div onClick={() => generateResult()}>click me</div>
-                {summary}
+                <button onClick={generateResult}>click me</button>
+                <div className="mt-6"> {summary}</div>
             </form>
         </div>
     );
